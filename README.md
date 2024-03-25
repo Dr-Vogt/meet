@@ -1,5 +1,5 @@
 # meet
-Feature: Show/Hide Event Details
+# Feature: Show/Hide Event Details
 
 Scenario: Event element is collapsed by default
     Given an event element
@@ -16,7 +16,7 @@ Scenario: User can collapse an event to hide details
     When I collapse the event
     Then the details should be hidden
     
-Feature: Specify Number of Events
+# Feature: Specify Number of Events
 
 Scenario: Default number of events shown
     Given no specified number of events
@@ -28,7 +28,7 @@ Scenario: User can change the number of events displayed
     When I change the number of events
     Then I should see the updated number of events
 
-Feature: Use the App When Offline
+# Feature: Use the App When Offline
 
 Scenario: Show cached data when there's no internet connection
     Given no internet connection
@@ -40,14 +40,14 @@ Scenario: Show error when user changes search settings offline
     When I try to change search settings
     Then I should see an error message
 
-Feature: Add an App Shortcut to the Home Screen
+# Feature: Add an App Shortcut to the Home Screen
 
 Scenario: User can install the meet app as a shortcut on their device home screen
     Given the option to install shortcuts
     When I choose to install the app shortcut
     Then I should see it on my device home screen
 
-Feature: Display Charts Visualizing Event Details
+# Feature: Display Charts Visualizing Event Details
 
 Scenario: Show chart with number of upcoming events in each city
     Given upcoming events in different cities
