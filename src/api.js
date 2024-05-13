@@ -14,23 +14,6 @@ const checkToken = async (accessToken) => {
     return result;
 };
 
-export const getEvents = async () => {
-    if (window.location.href.startsWith('http://localhost')) {
-        return mockData;
-    }
-
-    const token = await getAccessToken();
-
-    if (token) {
-        removeQuery();
-        const url = "https://nsbs0onlne.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" + "/" + token;
-        const response = await fetch(url);
-        const result = await response.json();
-        if (result) {
-            return result.events;
-        } else return null;
-    }
-};
 
 const removeQuery = () => {
     let newurl;
@@ -57,7 +40,7 @@ export const getAccessToken = async () => {
             const { authUrl } = result;
             return (window.location.href = authUrl);
         }
-        return code && getAccessToken(code);
+        return code && getToken(code);
     }
     return accessToken;
 };
@@ -71,4 +54,21 @@ const getToken = async (code) => {
     access_token && localStorage.setItem("access_token", access_token);
 
     return access_token;
+};
+export const getEvents = async () => {
+    if (window.location.href.startsWith('http://localhost')) {
+        return mockData;
+    }
+
+    const token = await getAccessToken();
+
+    if (token) {
+        removeQuery();
+        const url = "https://nsbs0onlne.execute-api.eu-central-1.amazonaws.com/dev/api/get-events" + "/" + token;
+        const response = await fetch(url);
+        const result = await response.json();
+        if (result) {
+            return result.events;
+        } else return null;
+    }
 };

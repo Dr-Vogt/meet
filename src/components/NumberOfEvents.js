@@ -5,14 +5,16 @@ const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
 
     const handleInputChanged = (event) => {
         const value = event.target.value;
+        
         setNumEvents(value);
-
+        setCurrentNOE(value);
         let infoText;
         if (isNaN(value) || value <= 0) {
             infoText = "only positive numbers are allowed"
         } else {
             infoText = "";
             setCurrentNOE(value);
+            
         }
         setErrorAlert(infoText);
     }
@@ -22,6 +24,7 @@ const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
             <label htmlFor="number-of-events-input">Number of Events: </label>
             <input
               type="text"
+              id="number-of-events-input"
               className="number-of-events-input"
               value={numEvents}
               onChange={handleInputChanged}
