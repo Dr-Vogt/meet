@@ -16,13 +16,15 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
         setSuggestions(filteredLocations);
 
         let infoText;
-        if (filteredLocations.length === 0) {
-            infoText = "We can not find the city you are looking for. Please try another city"
-        } else {
-            infoText = ""
-        }
-        setInfoAlert(infoText);
-    };
+    if (value === "") {
+        infoText = ""; 
+    } else if (filteredLocations.length === 0) {
+        infoText = "We cannot find the city you are looking for. Please try another city.";
+    } else {
+        infoText = "";
+    }
+    setInfoAlert(infoText);
+};
 
     const handleItemClicked = (event) => {
         const value = event.target.textContent;
