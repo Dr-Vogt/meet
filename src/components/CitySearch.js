@@ -25,10 +25,14 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
     const handleItemClicked = (event) => {
         const value = event.target.textContent;
-        setQuery(value);
-        setShowSuggestions(false); // to hide the list
-        setCurrentCity(value);
-        setInfoAlert("");
+        if (value === "See all cities") {
+            setSuggestions(allLocations);
+        } else {
+            setQuery(value);
+            setShowSuggestions(false); 
+            setCurrentCity(value);
+            setInfoAlert("");
+        }
     };
 
     useEffect(() => {
