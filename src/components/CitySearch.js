@@ -7,36 +7,33 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
     const handleInputChanged = (event) => {
         const value = event.target.value;
+        const filteredLocations = allLocations ? allLocations.filter((location) => {
+            return location.toUpperCase().includes(value.toUpperCase());
+        }) : [];
+
         setQuery(value);
-    
-        const filteredLocations = allLocations.filter((location) => {
-            return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-        });
-    
         setSuggestions(filteredLocations);
 
         let infoText;
-    if (value === "") {
-        infoText = ""; 
-    } else if (filteredLocations.length === 0) {
-        infoText = "We cannot find the city you are looking for. Please try another city.";
-    } else {
-        infoText = "";
-    }
-    setInfoAlert(infoText);
-};
+        if (filteredLocations.length === 0) {
+            infoText = "We can not find the city you are looking for. Please try another city";
+        } else {
+            infoText = "";
+        }
+        setInfoAlert(infoText);
+    };
 
     const handleItemClicked = (event) => {
         const value = event.target.textContent;
         setQuery(value);
-        setShowSuggestions(false);
+        setShowSuggestions(false); // to hide the list
         setCurrentCity(value);
-        setInfoAlert("")
+        setInfoAlert("");
     };
 
     useEffect(() => {
-        setSuggestions(allLocations);
-    }, [`${allLocations}`]);
+        setSuggestions(allLocations ? allLocations : []);
+      }, [`${allLocations}`]);
 
     return (
         <div id="city-search">
